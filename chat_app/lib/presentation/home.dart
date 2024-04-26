@@ -1,3 +1,4 @@
+import 'package:chat_app/presentation/chat.dart';
 import 'package:chat_app/widgets/gradient_text.dart';
 import 'package:flutter/material.dart';
 
@@ -59,7 +60,11 @@ class HomePage extends StatelessWidget {
                               top: 8.0, left: 16.0, bottom: 16.0),
                           child: (TextButton(
                               onPressed: () {
-                                Navigator.pushNamed(context, '/chat');
+                                // Navigator.pushNamed(context, '/chat');
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ChatPage()));
                               },
                               style: ButtonStyle(
                                 backgroundColor:
