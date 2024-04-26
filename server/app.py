@@ -12,7 +12,7 @@ def chat_with_bot():
     prompt_part = request.data
     gemini_responce= chat_with_gemini(prompt_part)
     
-    return jsonify(gemini_responce)
+    return jsonify(gemini_responce.text)
 
 if __name__ == '__main__':
     app.run(debug=True)
