@@ -266,7 +266,7 @@ class _ChatPageState extends State<ChatPage> {
 
   void getAnswer() async {
     const url =
-        "https://generativelanguage.googleapis.com/v1beta2/models/chat-bison-001:generateMessage?key=AIzaSyDU8FmFjBxjLu4Rn66LaOQz__42FmL3hvE";
+        "https://generativelanguage.googleapis.com/v1beta2/models/chat-bison-001:generateMessage?key=";
     final uri = Uri.parse(url);
     List<Map<String, String>> msg = [];
     for (var i = 0; i < _chatHistory.length; i++) {
