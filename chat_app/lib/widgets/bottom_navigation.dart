@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_construc
 import 'package:chat_app/presentation/community.dart';
 import 'package:chat_app/presentation/home.dart';
-import 'package:chat_app/presentation/profile.dart';
+import 'package:chat_app/presentation/musicScreen.dart';
+import 'package:chat_app/presentation/appointment.dart';
+import 'package:chat_app/presentation/recommentation_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -16,9 +18,40 @@ class _bottomNavigationState extends State<bottomNavigation> {
   int selectedIndex = 0;
   var screens = [
     const HomePage(),
-    const CommunityPage(),
-    const CommunityPage(),
-    const ProfilePage()
+    Recommendation(),
+    SongsApp(),
+    DoctorList(
+      doctors: [
+        DoctorCard(
+          imageUrl:
+              "https://cdn.pixabay.com/photo/2024/03/29/03/30/ai-generated-8662131_960_720.png",
+          doctorName: "Yash Pathak",
+          availability: "Availabel",
+          address: 'Dabra',
+        ),
+        DoctorCard(
+          imageUrl:
+              "https://cdn.pixabay.com/photo/2024/03/29/03/30/ai-generated-8662131_960_720.png",
+          doctorName: "Sudarshan Shrivastava",
+          availability: "Availabel",
+          address: 'Gwalior',
+        ),
+        DoctorCard(
+          imageUrl:
+              "https://cdn.pixabay.com/photo/2024/03/29/03/30/ai-generated-8662131_960_720.png",
+          doctorName: "Anishit Mishra",
+          availability: "Availabel",
+          address: 'Murena',
+        ),
+        DoctorCard(
+          imageUrl:
+              "https://cdn.pixabay.com/photo/2024/03/29/03/30/ai-generated-8662131_960_720.png",
+          doctorName: "Shradha gurjar",
+          availability: "Availabel",
+          address: 'Agra',
+        ),
+      ],
+    ),
   ];
 
   var homeIcon = Icon(
@@ -30,7 +63,7 @@ class _bottomNavigationState extends State<bottomNavigation> {
     fill: 0,
   );
   var musicIcon = Icon(
-    Icons.music_note,
+    Icons.music_note_rounded,
     fill: 0,
   );
   var notificationIcon = Icon(
@@ -49,6 +82,9 @@ class _bottomNavigationState extends State<bottomNavigation> {
       // ),
       body: screens[selectedIndex],
       bottomNavigationBar: BottomAppBar(
+        padding: EdgeInsets.all(20.0),
+        
+
         // shape: ConvexNotchedRectangle(
         //   notchSmoothness: NotchSmoothness.smoothEdge,
         // ),

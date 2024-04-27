@@ -263,50 +263,55 @@ class _ChatPageState extends State<ChatPage> {
       ),
     );
   }
+void getAnswer() async {
+  const url = "https://chatbotserver-w8u6.onrender.com/chatwithbot";
+  final uri = Uri.parse(url);
 
-  void getAnswer() async {
-    const url =
-        "https://generativelanguage.googleapis.com/v1beta2/models/chat-bison-001:generateMessage?key=";
-    final uri = Uri.parse(url);
-    List<Map<String, String>> msg = [];
-    for (var i = 0; i < _chatHistory.length; i++) {
-      msg.add({"content": _chatHistory[i]["message"]});
-    }
-
-    Map<String, dynamic> request = {
-      "prompt": {
-        "messages": [msg]
-      },
-      "temperature": 0.25,
-      "candidateCount": 1,
-      "topP": 1,
-      "topK": 1
-    };
-    _startLoader();
-    _chatHistory.add({
-      "time": DateTime.now(),
-      "message": "",
-      "isSender": false,
-      "isLoading": true
-    });
-    final response = await http.post(uri, body: jsonEncode(request));
-    // _hideLoader();
-
-    _chatHistory.removeLast();
-    setState(() {
-      _chatHistory.add({
-        "time": DateTime.now(),
-        "message": json.decode(response.body)["candidates"][0]["content"],
-        "isSender": false,
-        "isLoading": false
-      });
-    });
-
-    _scrollController.jumpTo(
-      _scrollController.position.maxScrollExtent,
-    );
+  List<Map<String, String>> prompts = [];
+  for (var i = 0; i < _chatHistory.length; i++) {
+    prompts.add({"message": _chatHistory[i]["message"]});
   }
 
+  Map<String, dynamic> request = {
+    "prompts": prompts,
+  };
+
+  _startLoader();
+  _chatHistory.add({
+    "time": DateTime.now(),
+    "message": "",
+    "isSender": false,
+    "isLoading": true
+  });
+
+  final response = await http.post(
+    uri,
+    headers: {"Content-Type": "application/json"},
+    body: jsonEncode(request),
+  );
+
+  _chatHistory.removeLast();
+  if (response.statusCode == 200) {
+    List<dynamic> responses = json.decode(response.body)["responses"];
+    setState(() {
+      responses.forEach((response) {
+        _chatHistory.add({
+          "time": DateTime.now(),
+          "message": response,
+          "isSender": false,
+          "isLoading": false
+        });
+      });
+    });
+  } else {
+    print("Error: ${response.statusCode}");
+    // Handle error scenario
+  }
+
+  _scrollController.jumpTo(
+    _scrollController.position.maxScrollExtent,
+  );
+}
   _startLoader() {
     return LoadingAnimationWidget.waveDots(color: Colors.black, size: 25);
   }

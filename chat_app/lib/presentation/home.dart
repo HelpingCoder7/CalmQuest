@@ -1,6 +1,8 @@
 import 'package:chat_app/presentation/chat.dart';
+import 'package:chat_app/presentation/recommentation_page.dart';
 import 'package:chat_app/widgets/gradient_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class HomePage extends StatelessWidget {
   static const routeName = '/home';
@@ -11,7 +13,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "AI ChatBot",
+          "CalmQuest",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
       ),
@@ -42,14 +44,6 @@ class HomePage extends StatelessWidget {
                         const Padding(
                           padding: EdgeInsets.only(top: 16.0, left: 16.0),
                           child: (Text("Hey! Lets have a chat",
-                              style: TextStyle(
-                                  fontSize: 20.0,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white))),
-                        ),
-                        const Padding(
-                          padding: EdgeInsets.only(left: 16.0),
-                          child: (Text("Anything",
                               style: TextStyle(
                                   fontSize: 20.0,
                                   fontWeight: FontWeight.bold,
@@ -109,11 +103,16 @@ class HomePage extends StatelessWidget {
                 ),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(top: 16.0, left: 16.0),
-              child: Text(
-                "Recent Chats",
-                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+            Expanded(
+              child: Container(
+                child: Center(
+                    child: Text(
+                  "Please chat first to get personalised recommendation",
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey,
+                      leadingDistribution: TextLeadingDistribution.even),
+                )),
               ),
             ),
           ],

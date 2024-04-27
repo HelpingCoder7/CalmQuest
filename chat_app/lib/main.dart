@@ -1,5 +1,4 @@
-import 'package:chat_app/presentation/chat.dart';
-import 'package:chat_app/presentation/home.dart';
+
 import 'package:chat_app/widgets/bottom_navigation.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +25,7 @@ class MyApp extends StatelessWidget {
       //   HomePage.routeName: (context) => const HomePage(),
       //   ChatPage.routeName: (context) => const ChatPage(),
       // },
-      home: const bottomNavigation(),
+      home: bottomNavigation(),
     );
   }
 }
