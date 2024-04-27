@@ -1,13 +1,18 @@
-from flask import Flask, request, jsonify
+from flask import Flask ,request,jsonify
+import pickle
 from gemini import chat_with_gemini
 
-app = Flask(__name__)
+app = Flask('__main__')
 
-@app.route('/chatwithbot', methods=['POST'])
+
+
+app.route('/chatwithbot',method=['POST'])
 def chat_with_bot():
+    
     prompt_part = request.data
-    gemini_response = chat_with_gemini(prompt_part)
-    return jsonify(gemini_response.text)
+    gemini_responce= chat_with_gemini(prompt_part)
+    
+    return jsonify(gemini_responce.text)
 
 if __name__ == '__main__':
     app.run(debug=True)

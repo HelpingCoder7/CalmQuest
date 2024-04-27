@@ -7,7 +7,7 @@ load_dotenv()
 
 
 def chat_with_gemini(prompt_parts):
-    genai.configure(api_key=os.getenv['OPEN_API_KEY'])
+    genai.configure(api_key=os.getenv['AIzaSyDU8FmFjBxjLu4Rn66LaOQz__42FmL3hvE'])
 
 
     generation_config = {
@@ -104,4 +104,7 @@ Important Note:
     response = model.generate_content(prompt_parts)
     
     return response
+
+
+print(chat_with_gemini("Hi"))
 
